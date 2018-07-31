@@ -1,0 +1,81 @@
+#### Exercises
+
+> What data types do each of these values represent?
+
+A: 
+"A Clockwork Orange" - String
+42 - Integer
+09/02/1945 - Date
+98.7 - Float
+$15.99 - String/double/decimal
+
+> Explain when a database would be used. Explain when a text file would be used.
+
+A: Database - When the amount of data needing to be stored is large, when multiple applications will be accessing the data at the same time, and when data frequently needs to be added, updated, or removed.
+Text file - When the amount of data needing to be stored is small, when being able to physically read the code is required, when only one application will be accessing the data at a time, and when adding, updating, and removing data can be efficiently accomplished by you.
+
+> Describe one difference between SQL and other programming languages.
+
+A:SQL is declarative instead of imperative. Instead of explaining each step you want the computer to do, one step at a time, you just tell the computer what you want to happen or get, and it interprets that into a bunch of imperative steps you don't see underneath. You are abstracted away from those steps.
+
+> In your own words, explain how the pieces of a database system fit together at a high level.
+
+A: At high level, all pieces of database fit together as tables that contains rows and columns that represent information. And also there will be an interface, where you can access and use the data and data, that is managed by an engine, and a structure that is defined so the data is organized.
+
+> Explain the meaning of table, row, column, and value.
+
+A: 
+Table - Contains the name of the table which acts as an identifier to access the columns and rows of this data set.
+Row - Contains the data for the columns, with each row containing data from a single event.
+Column - Contains column name, data type, and any other attributes for the column.
+Value - Contains the information described by the column name.
+
+> List three data types that can be used in a table.
+
+A: 
+1. Strings 
+2. Objects 
+3. Dates
+
+> Given this payments table, provide an English description of the following queries and include their results:
+
+     SELECT date, amount
+     FROM payments;
+
+     SELECT amount
+     FROM payments
+     WHERE amount > 500;
+
+     SELECT *
+     FROM payments
+     WHERE payee = 'Mega Foods';
+
+A: 
+1. Return the all values from the date and amount columns from the table named payments.
+Output = date column ('2016-05-01', '2016-05-10', '2016-05-15', '2016-05-23')
+          Amount column (1500, 37, 124.93, 54.72)
+
+2. Return the all values from the amount column from the table named payments, when the amount value is greater than 500.
+Output = (1500)
+
+3. Return all columns from the table named payments, when the value of Payee is equivalent to the string 'Mega Foods'.
+Output = ('2016-05-15', 'Mega Foods', 124.93, 'Groceries')
+
+> Given this users table, write SQL queries using the following criteria and include the output:
+
+The email and sign-up date for the user named DeAndre Data.
+The user ID for the user with email 'aleesia.algorithm@uw.edu'.
+All the columns for the user ID equal to 4.
+
+A: 
+SELECT email, signup
+FROM users
+WHERE name = 'DeAndre Data';
+
+SELECT userid
+FROM users
+WHERE email = 'aleesia.algorithm@uw.edu';
+
+SELECT *
+FROM users
+WHERE userid = 4;   
