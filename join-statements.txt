@@ -52,6 +52,8 @@ A: SELECT volunteers.first_name AS volunteer_first_name, volunteers.last_name AS
 FROM volunteers
 LEFT OUTER JOIN dogs ON volunteers.foster_dog_id = dogs.id;
 
+-> https://www.db-fiddle.com/f/tpodLv3A43VL4gHqohqx2o/0
+
 - The cat's name, adopter's name, and adopted date for each cat adopted within the past month to be displayed as part of the "Happy Tail" social media promotion which posts recent successful adoptions.
 
 A: 
@@ -61,12 +63,16 @@ JOIN adopters ON cat_adoptions.adopter_id = adopters.id
 JOIN cats ON cat_adoptions.cat_id = cats.id
 WHERE cat_adoptions.date > (CURRENT_DATE - INTERVAL '31 DAYS');
 
+-> https://www.db-fiddle.com/f/tpodLv3A43VL4gHqohqx2o/0
+
 - Create a list of adopters who have not yet chosen a dog to adopt.
 
 A: SELECT * 
 FROM adopters
 LEFT JOIN dog_adoptions ON adopters.id = dog_adoptions.adopter_id
 WHERE dog_adoptions.adopter_id IS NULL;
+
+-> https://www.db-fiddle.com/f/tpodLv3A43VL4gHqohqx2o/0
 
 - Lists of all cats and all dogs who have not been adopted.
 
@@ -76,11 +82,15 @@ FROM cats
 LEFT JOIN cat_adoptions ON cats.id = cat_adoptions.cat_id
 WHERE cat_adoptions.cat_id IS NULL;
 
+-> https://www.db-fiddle.com/f/tpodLv3A43VL4gHqohqx2o/0
+
 List of all dogs adopted: 
 SELECT dogs.name AS name
 FROM dogs
 LEFT JOIN dog_adoptions ON dogs.id = dog_adoptions.dog_id
 WHERE dog_adoptions.dog_id IS NULL;
+
+-> https://www.db-fiddle.com/f/tpodLv3A43VL4gHqohqx2o/0
 
 - The name of the person who adopted Rosco.
 
@@ -88,6 +98,8 @@ A: SELECT adopters.first_name AS adopter_first_name, adopters.last_name AS adopt
 from adopters
 RIGHT JOIN dog_adoptions ON adopters.id = dog_adoptions.adopter_id
 JOIN dogs ON dog_adoptions.dog_id = dogs.id;
+
+-> https://www.db-fiddle.com/f/tpodLv3A43VL4gHqohqx2o/0
 
 > Using this Library schema and data, write queries applying the following scenarios and include the results:
 
@@ -98,10 +110,14 @@ FROM patrons
 JOIN holds ON holds.patron_id = patrons.id
 JOIN books ON holds.isbn = books.isbn WHERE books.title = 'Advanced Potion-Making' ORDER BY holds.rank;
 
+-> https://www.db-fiddle.com/f/j4EGoWzHWDBVtiYzB9ygC4/0
+
 - List all of the library patrons. If they have one or more books checked out, list the books with the patrons.
 
 A: SELECT patrons.name AS patrons_name, string_agg(books.title, ', ') AS books
 FROM patrons
 RIGHT OUTER JOIN transactions ON patrons.id = transactions.patron_id
 JOIN books ON transactions.isbn = books.isbn GROUP BY patrons.name;
+
+-> https://www.db-fiddle.com/f/j4EGoWzHWDBVtiYzB9ygC4/0
 
