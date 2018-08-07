@@ -30,7 +30,7 @@ time: the times for client’s personal training sessions
 
 -> Which data type would you use to store each of the following pieces of information?
 -First and last name: text
--Whether they sent in their RSVP: for Y/N use char(1)
+-Whether they sent in their RSVP: boolean 
 -Number of guests: int
 -Number of meals: decimal
 
@@ -39,14 +39,14 @@ time: the times for client’s personal training sessions
 A: CREATE TABLE wedding_dinner(
 	  first_name text,
 	  last_name text,
-	  RSVP char(1) SET DEFAULT N,
+	  RSVP boolean SET DEFAULT false,
 	  no_of_guests int,
 	  no_of_meals decimal
 	);
 
 -> Write a command that adds a column to track whether the guest sent a thank you card.
 
-A: ALTER TABLE wedding_dinner ADD COLUMN thank_you_card char(1) SET DEFAULT N;
+A: ALTER TABLE wedding_dinner ADD COLUMN thank_you_card boolean SET DEFAULT false;
 
 -> You have decided to move the data about the meals to another table, so write a command to remove the column storing the number meals from the wedding table.
 
@@ -70,7 +70,7 @@ A: CREATE TABLE library(
 	publishing_date date,
 	number_of_copies int,
 	available_copies int
-     );	
+    );	
 
 -> Find three books and add their information to the table.
 
@@ -96,16 +96,16 @@ A: CREATE TABLE spacecrafts (
 	country_of_origin text,
 	description text,
 	orbiting_body text,
-	currently_operating char(1),
+	currently_operating boolean,
 	miles_from_earth text
      );
 
 -> Add three non-Earth-orbiting satellites to the table.
 
 A: INSERT INTO spacecrafts (id, name, year_launched, country_of_origin, description, orbiting_body, currently_operating, miles_from_earth) VALUES
-	(2014-076A, ‘Hayabusa2’, 2014, ‘Japan’, ‘an asteroid sample return mission 		operated by the Japanese space agency’, JAXA’, ‘(162173) Ryugu’, Y, 1,920),
-	(2001-014A, '2001 Mars Odyssey', 2001, 'USA', 'detect presence of water, ice,		and study the planet's geology and radiation environment’, 'Mars', Y,			54,600,000),
-	(2011-040A, ‘Juno’, 2011, ‘USA’, ‘measure Jupiter's composition, gravity field,		magnetic field, and polar magnetosphere’, ‘Jupiter’, Y, 1.74 billion);
+	(2014-076A, ‘Hayabusa2’, 2014, ‘Japan’, ‘an asteroid sample return mission 		operated by the Japanese space agency’, JAXA’, ‘(162173) Ryugu’, true, 1,920),
+	(2001-014A, '2001 Mars Odyssey', 2001, 'USA', 'detect presence of water, ice,		and study the planet's geology and radiation environment’, 'Mars', true,			54,600,000),
+	(2011-040A, ‘Juno’, 2011, ‘USA’, ‘measure Jupiter's composition, gravity field,		magnetic field, and polar magnetosphere’, ‘Jupiter’, true, 1.74 billion);
 
 -> Remove one of the satellites from the table since it has just crashed into the planet.
 
@@ -113,7 +113,7 @@ A: DELETE FROM spacecrafts WHERE id = 2011-040A;
 
 -> Edit another satellite because it is no longer operating and change the value to reflect that.
 
-A: UPDATE spacecrafts SET currently_operating = N WHERE id = 2001-014A;
+A: UPDATE spacecrafts SET currently_operating = false WHERE id = 2001-014A;
 
 > Write a command to create a new table to hold the emails in your inbox. This table should include an id, the subject line, the sender, any additional recipients, the body of the email, the timestamp, whether or not you have read the email, and the id of the email chain it's in. Also provide commands that perform the following operations:
 
@@ -124,16 +124,16 @@ A: CREATE TABLE emails (
 	recipients text,
 	body text,
 	timestamp text,
-	read char(1) SET DEFAULT N,
+	read boolean SET DEFAULT false,
 	email_chain_ID char
      );
 
 -> Add three new emails to the inbox.
 
 A: INSERT INTO emails (id, subject, sender, recipients, body, timestamp, read, email_chain_ID) VALUES
-	(0001, ’20% discount on delivery order!’, ‘Grubhub’, ‘Order tonight and receive		20% off your entire order! Click here for discount code.’, 2018-08-02 15:20:00,		Y, 1111),
-	(0002, ‘Class video recording’, ‘Shane Donovan’, ‘Ro, Ken’, ‘Hey guys, which		class would you like to have us record for our 2 minute website clip?’,			2018-08-01 09:50:00, Y, 1112),
-	(0003, ‘Reset your password’, ‘Yahoo Mail’, ‘Click here to reset your password.’	2018-08-01 19:35:00, Y, 1113);
+	(0001, ’20% discount on delivery order!’, ‘Grubhub’, ‘Order tonight and receive		20% off your entire order! Click here for discount code.’, 2018-08-02 15:20:00,		true, 1111),
+	(0002, ‘Class video recording’, ‘Shane Donovan’, ‘Ro, Ken’, ‘Hey guys, which		class would you like to have us record for our 2 minute website clip?’,			2018-08-01 09:50:00, true, 1112),
+	(0003, ‘Reset your password’, ‘Yahoo Mail’, ‘Click here to reset your password.’	2018-08-01 19:35:00, true, 1113);
 
 -> You deleted one of the emails, so write a command to remove the row from the inbox table.
 
